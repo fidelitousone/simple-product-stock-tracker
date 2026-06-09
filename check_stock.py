@@ -27,6 +27,23 @@ def log(msg):
     print(f"[{ts}] {msg}", flush=True)
 
 
+def parse_stock(data):
+    """
+    Extract the in-stock bool from a decoded Store API payload.
+
+    Return True/False, or None if the payload does not let us determine it.
+    None means 'unknown', and the caller must never treat it as a change.
+    Pure function (no I/O) so the parsing rules can be tested directly.
+    """
+    if isinstance(data, list):
+        data = data[0] if data else None
+    if not isinstance(data, dict) or "is_in_stock" not in data:
+        log("Response missing 'is_in_stock'; treating as unknown.")
+        return None
+
+    return bool(data["is_in_stock"])
+
+
 def fetch_stock():
     """
     Return True/False for in-stock, or None if we could not determine it.
@@ -49,13 +66,7 @@ def fetch_stock():
         log(f"Could not parse JSON: {e}; treating as unknown.")
         return None
 
-    if isinstance(data, list):
-        data = data[0] if data else None
-    if not isinstance(data, dict) or "is_in_stock" not in data:
-        log("Response missing 'is_in_stock'; treating as unknown.")
-        return None
-
-    return bool(data["is_in_stock"])
+    return parse_stock(data)
 
 
 def load_previous():
@@ -80,6 +91,11 @@ def save_state(in_stock):
             f,
             indent=2,
         )
+
+
+def should_notify(current, previous):
+    """Alert only on a rising edge into in-stock (never when already in stock)."""
+    return current and previous is not True
 
 
 def notify():
@@ -114,7 +130,7 @@ def main():
     previous = load_previous()
     log(f"Previous: {previous} | Current: {'in stock' if current else 'out of stock'}")
 
-    if current and previous is not True:
+    if should_notify(current, previous):
         log("Item is available -> sending alert.")
         notify()
 

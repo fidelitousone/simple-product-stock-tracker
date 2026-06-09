@@ -1,0 +1,93 @@
+[
+  {
+    "id": 207987,
+    "name": "VP2430 &#8211; 4x 2.5G Port Intel® N150",
+    "slug": "vp2430",
+    "parent": 0,
+    "type": "composite",
+    "variation": "",
+    "permalink": "https://protectli.com/product/vp2430/",
+    "sku": "VP2430",
+    "on_sale": false,
+    "prices": {
+      "price": "0",
+      "regular_price": "0",
+      "sale_price": "0",
+      "price_range": null,
+      "currency_code": "USD",
+      "currency_symbol": "$",
+      "currency_minor_unit": 2,
+      "currency_decimal_separator": ".",
+      "currency_thousand_separator": ",",
+      "currency_prefix": "$",
+      "currency_suffix": ""
+    },
+    "price_html": "<span class=\"woocommerce-Price-amount amount\"><span class=\"woocommerce-Price-currencySymbol\">&#036;</span>419.00</span>",
+    "average_rating": "0",
+    "review_count": 0,
+    "categories": [
+      {
+        "id": 44,
+        "name": "4 Port",
+        "slug": "4-port",
+        "link": "https://protectli.com/product-category/vaults/4-port/"
+      },
+      {
+        "id": 2644,
+        "name": "Vaults",
+        "slug": "vaults",
+        "link": "https://protectli.com/product-category/vaults/"
+      }
+    ],
+    "tags": [],
+    "brands": [],
+    "attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "has_options": true,
+    "is_purchasable": true,
+    "is_in_stock": false,
+    "is_on_backorder": false,
+    "low_stock_remaining": null,
+    "stock_availability": {
+      "text": "Out of stock",
+      "class": "out-of-stock"
+    },
+    "sold_individually": false,
+    "weight": "965",
+    "dimensions": {
+      "length": "200",
+      "width": "155",
+      "height": "125"
+    },
+    "formatted_weight": "965 g",
+    "formatted_dimensions": "200 × 155 × 125 mm",
+    "add_to_cart": {
+      "text": "Read more",
+      "description": "Read more about &ldquo;VP2430 &#8211; 4x 2.5G Port Intel® N150&rdquo;",
+      "url": "https://protectli.com/product/vp2430/",
+      "single_text": "Add to cart",
+      "minimum": 1,
+      "maximum": 9999,
+      "multiple_of": 1
+    },
+    "is_password_protected": false,
+    "_links": {
+      "self": [
+        {
+          "href": "https://protectli.com/wp-json/wc/store/v1/products/207987",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://protectli.com/wp-json/wc/store/v1/products"
+        }
+      ]
+    }
+  }
+]
