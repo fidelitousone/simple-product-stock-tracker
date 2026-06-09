@@ -2,7 +2,7 @@ name: VP2430 stock check
 
 on:
   schedule:
-    - cron: "0 13 * * *"
+    - cron: '0 0,6,12,18 * * *'
   workflow_dispatch:
 
 permissions:
