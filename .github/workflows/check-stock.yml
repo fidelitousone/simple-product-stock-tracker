@@ -1,0 +1,42 @@
+name: VP2430 stock check
+
+on:
+  schedule:
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stock-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run stock check
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python check_stock.py
+
+      - name: Commit updated state (only if it changed)
+        run: |
+          if [[ -n "$(git status --porcelain last_status.json)" ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add last_status.json
+            git commit -m "Update stock status [skip ci]"
+            git push
+          else
+            echo "No state change; nothing to commit."
+          fi
